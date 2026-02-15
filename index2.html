@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>남양주북부(bukbu)리틀야구단 | 신입 모집</title>
+  <meta name="description" content="남양주 북부권 유소년 야구팀. 초보 환영, 단계별 훈련, 체험훈련 신청 안내." />
+
+  <!-- Pico.css via jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <!-- Icons (optional) via jsDelivr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --brand-1:#ff3d7f;   /* hot pink */
+      --brand-2:#ffb703;   /* sunny */
+      --brand-3:#00d4ff;   /* sky */
+      --ink:#0b1220;
+      --card: rgba(255,255,255,.92);
+      --shadow: 0 16px 40px rgba(11,18,32,.14);
+      --radius: 18px;
+    }
+
+    /* 페이지 전체 톤 업 */
+    body{
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(255,61,127,.25), transparent 55%),
+        radial-gradient(900px 600px at 95% 10%, rgba(0,212,255,.22), transparent 55%),
+        radial-gradient(800px 500px at 40% 105%, rgba(255,183,3,.22), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, #fbfcff 55%, #f7f9ff 100%);
+      color: var(--ink);
+    }
+
+    /* 상단 네비: 반투명 + 블러 + 살짝 떠있는 느낌 */
+    nav.container-fluid{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(255,255,255,.72);
+      border-bottom: 1px solid rgba(11,18,32,.08);
+    }
+    nav a{ font-weight: 600; }
+    nav a[role="button"]{
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      border: none;
+      box-shadow: 0 10px 20px rgba(255,61,127,.18);
+      transform: translateZ(0);
+    }
+    nav a[role="button"]:hover{ filter: brightness(1.02); transform: translateY(-1px); }
+
+    main.container{ padding: 2.25rem 0 4rem; }
+
+    /* 히어로: 밝고 역동적인 그라디언트 + 배경 이미지 + 라이트 글로우 */
+    .hero{
+      position: relative;
+      border-radius: calc(var(--radius) + 8px);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-top: 1.2rem;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(120deg, rgba(255,61,127,.88), rgba(255,183,3,.72), rgba(0,212,255,.72)),
+        url("https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05);
+      transform: scale(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 55%);
+      transform: rotate(8deg);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position: relative;
+      padding: clamp(1.4rem, 3.5vw, 3rem);
+      color: #fff;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:.55rem;
+      align-items:center;
+      padding:.45rem .75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 10px 24px rgba(0,0,0,.10);
+      font-weight: 700;
+    }
+    .hero h1{
+      margin: .9rem 0 .6rem;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-shadow: 0 10px 30px rgba(0,0,0,.22);
+    }
+    .hero p{
+      max-width: 60ch;
+      margin: 0 0 1.1rem;
+      font-size: 1.05rem;
+      text-shadow: 0 8px 18px rgba(0,0,0,.18);
+    }
+
+    .cta-row{ display:flex; flex-wrap: wrap; gap:.75rem; align-items:center; }
+    .cta{
+      border-radius: 999px;
+      border: 0;
+      padding: .85rem 1.05rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+      box-shadow: 0 16px 34px rgba(0,0,0,.18);
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+    }
+    .cta.primary{
+      background: linear-gradient(135deg, #ffffff, rgba(255,255,255,.86));
+      color: #0b1220;
+    }
+    .cta.ghost{
+      background: rgba(11,18,32,.18);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 14px 28px rgba(0,0,0,.14);
+    }
+    .cta:hover{ transform: translateY(-2px); filter: brightness(1.02); }
+    .pulse{
+      position: relative;
+    }
+    .pulse::after{
+      content:"";
+      position:absolute; inset:-10px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,.35);
+      opacity: 0;
+      transform: scale(.98);
+      animation: pulse 1.8s ease-out infinite;
+      pointer-events:none;
+    }
+    @keyframes pulse{
+      0%{ opacity:.55; transform: scale(.98); }
+      70%{ opacity:0; transform: scale(1.12); }
+      100%{ opacity:0; transform: scale(1.12); }
+    }
+
+    /* 섹션 공통 */
+    section{
+      margin-top: 2.4rem;
+      scroll-margin-top: 88px;
+    }
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      margin-bottom: .7rem;
+    }
+    .section-title i{
+      width: 38px; height: 38px;
+      display:grid; place-items:center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255,61,127,.18), rgba(0,212,255,.16));
+      border: 1px solid rgba(11,18,32,.08);
+    }
+
+    /* 카드/그리드: 밝고 통통 튀는 느낌 */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid rgba(11,18,32,.08);
+      box-shadow: 0 10px 30px rgba(11,18,32,.08);
+      padding: 1.05rem;
+      transition: transform .16s ease, box-shadow .16s ease;
+      overflow:hidden;
+    }
+    .card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 18px 48px rgba(11,18,32,.14);
+    }
+    .span-4{ grid-column: span 4; }
+    .span-6{ grid-column: span 6; }
+    .span-12{ grid-column: span 12; }
+
+    .badge{
+      display:inline-flex;
+      gap:.4rem;
+      align-items:center;
+      padding:.3rem .6rem;
+      border-radius: 999px;
+      font-weight: 700;
+      background: rgba(0,212,255,.14);
+      border: 1px solid rgba(0,212,255,.25);
+    }
+
+    /* 이미지 그리드 */
+    .photo{
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(11,18,32,.08);
+      background: #fff;
+      box-shadow: 0 14px 40px rgba(11,18,32,.10);
+    }
+    .photo img{
+      width:100%;
+      height: 240px;
+      object-fit: cover;
+      display:block;
+      transition: transform .35s ease;
+    }
+    .photo:hover img{ transform: scale(1.05); }
+    .photo figcaption{
+      padding: .85rem 1rem;
+      font-weight: 700;
+      display:flex; justify-content: space-between; gap:.5rem;
+      align-items:center;
+    }
+
+    /* 표 */
+    table{
+      background: rgba(255,255,255,.9);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(11,18,32,.08);
+      box-shadow: 0 12px 34px rgba(11,18,32,.10);
+    }
+    thead{
+      background: linear-gradient(135deg, rgba(255,61,127,.14), rgba(255,183,3,.12), rgba(0,212,255,.12));
+    }
+
+    /* 섹션 진입 애니메이션 */
+    .reveal{
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.on{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 모바일 */
+    @media (max-width: 860px){
+      .span-4{ grid-column: span 12; }
+      .span-6{ grid-column: span 12; }
+      .photo img{ height: 210px; }
+      nav small{ display:none; }
+    }
+
+    /* 모션 최소화 설정 */
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ transition:none; opacity:1; transform:none; }
+      .pulse::after{ display:none; }
+      .photo img{ transition:none; }
+      .card{ transition:none; }
+      .cta{ transition:none; }
+    }
+
+    footer{
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(11,18,32,.10);
+      color: rgba(11,18,32,.72);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="container-fluid">
+    <ul>
+      <li><strong>남양주북부(bukbu)리틀야구단</strong> <small>· 함께하는 즐거움, 함께하는 성장</small></li>
+    </ul>
+    <ul>
+      <li><a href="#about">팀 소개</a></li>
+      <li><a href="#recruit">모집 안내</a></li>
+      <li><a href="#program">훈련/프로그램</a></li>
+      <li><a href="#fee">회비/운영</a></li>
+      <li><a href="#calendar">연간 일정</a></li>
+      <li><a href="#contact">문의/체험</a></li>
+      <li><a href="#contact" role="button"><i class="fa-solid fa-baseball"></i>&nbsp; 체험훈련 신청</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <!-- HERO -->
+    <header class="hero reveal">
+      <div class="hero-inner">
+        <span class="kicker"><i class="fa-solid fa-bolt"></i> 신입 모집 · 1~4학년(기준연도 표기) · 남양주 북부권</span>
+        <h1>밝게, 빠르게, 함께 성장하는<br/>유소년 야구팀</h1>
+        <p>
+          별내·진접·왕숙신도시 등 남양주 북부권 아이들이 야구를 즐겁게 배우고,
+          팀워크 속에서 자신감과 기본기를 쌓아갑니다.
+        </p>
+        <div class="cta-row">
+          <a class="cta primary pulse" href="#contact"><i class="fa-solid fa-paper-plane"></i>&nbsp; 체험훈련/상담 신청</a>
+          <a class="cta ghost" href="#recruit"><i class="fa-solid fa-list-check"></i>&nbsp; 모집 내용 보기</a>
+          <a class="cta ghost" href="#photos"><i class="fa-regular fa-image"></i>&nbsp; 팀 사진 보기</a>
+        </div>
+        <p style="margin-top: .9rem; opacity:.95;">
+          <i class="fa-solid fa-circle-check"></i> 첫 야구도 환영합니다. (운동복/운동화/물병 지참 권장)
+        </p>
+      </div>
+    </header>
+
+    <!-- KEY INFO -->
+    <section class="reveal" aria-label="핵심 안내">
+      <div class="section-title">
+        <i class="fa-solid fa-star"></i>
+        <div>
+          <h2 style="margin:0;">핵심 안내</h2>
+          <p style="margin:0; opacity:.75;">모집/운영 정보를 한눈에 확인하세요.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card span-4">
+          <span class="badge"><i class="fa-solid fa-graduation-cap"></i> 모집 학년</span>
+          <h3 style="margin-top:.6rem;">1~4학년</h3>
+          <p style="margin-bottom:0;">(기준연도는 페이지 상단 표기 기준)</p>
+        </article>
+
+        <article class="card span-4">
+          <span class="badge"><i class="fa-solid fa-location-dot"></i> 활동 지역</span>
+          <h3 style="margin-top:.6rem;">남양주 북부권</h3>
+          <p style="margin-bottom:0;">별내 · 진접 · 왕숙신도시 등</p>
+        </article>
+
+        <article class="card span-4">
+          <span class="badge"><i class="fa-solid fa-clock"></i> 훈련 시간</span>
+          <h3 style="margin-top:.6rem;">평일 16:30 ~ 19:30</h3>
+          <p style="margin-bottom:0;">휴무: 목요일/일요일</p>
+        </article>
+
+        <article class="card span-6">
+          <h3><i class="fa-solid fa-dumbbell"></i> 기초부터 탄탄히</h3>
+          <p style="margin-bottom:0;">캐치 · 스로우 · 스윙 · 주루 단계별 훈련</p>
+        </article>
+
+        <article class="card span-6">
+          <h3><i class="fa-solid fa-shield-heart"></i> 안전 & 인성 우선</h3>
+          <p style="margin-bottom:0;">부상 예방 + 스포츠맨십</p>
+        </article>
+
+        <article class="card span-12">
+          <h3><i class="fa-solid fa-people-group"></i> 가족 같은 분위기</h3>
+          <p style="margin-bottom:0;">서로 격려하며 함께 성장</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section id="photos" class="reveal">
+      <div class="section-title">
+        <i class="fa-regular fa-images"></i>
+        <div>
+          <h2 style="margin:0;">팀 사진</h2>
+          <p style="margin:0; opacity:.75;">/images 폴더에 사진을 넣고 파일명만 맞추면 자동 반영됩니다.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <figure class="photo span-6">
+          <img src="./images/team-main.jpg" alt="남양주북부리틀야구단 단체 사진(대표)" onerror="this.src='https://images.unsplash.com/photo-1508804185872-c957dff3f521?auto=format&fit=crop&w=1400&q=80'">
+          <figcaption>대표 사진 <span style="opacity:.7;"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></figcaption>
+        </figure>
+
+        <figure class="photo span-6">
+          <img src="./images/team-1.jpg" alt="팀 사진 1" onerror="this.src='https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1400&q=80'">
+          <figcaption>훈련/대회 <span style="opacity:.7;"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></figcaption>
+        </figure>
+
+        <figure class="photo span-6">
+          <img src="./images/team-2.jpg" alt="팀 사진 2" onerror="this.src='https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1400&q=80'">
+          <figcaption>단체샷 <span style="opacity:.7;"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></figcaption>
+        </figure>
+
+        <figure class="photo span-6">
+          <img src="./images/team-3.jpg" alt="팀 사진 3" onerror="this.src='https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1400&q=80'">
+          <figcaption>원정/활동 <span style="opacity:.7;"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="section-title">
+        <i class="fa-solid fa-fire"></i>
+        <div>
+          <h2 style="margin:0;">팀 소개</h2>
+          <p style="margin:0; opacity:.75;">“작지만 강한” 팀, 즐겁게 배우고 함께 성장합니다.</p>
+        </div>
+      </div>
+
+      <article class="card">
+        <p style="margin-top:0;">
+          남양주북부리틀야구단은 모든 구성원이 하나 되어 즐겁게 야구를 배우고 성장하는 곳입니다.
+          작은 승리에도 함께 기뻐하고, 도전과 실패에도 서로를 격려하며 나아갑니다.
+        </p>
+        <p style="margin-bottom:0;">
+          ✅ 초보 환영 ✅ 단계별 훈련 ✅ 대회/리그 참가 ✅ 팀워크·인성
+        </p>
+      </article>
+
+      <div class="grid" style="margin-top: 1rem;">
+        <article class="card span-4">
+          <h3 style="margin-top:0;">취미반</h3>
+          <p style="margin-bottom:0;">주 1~2회</p>
+        </article>
+        <article class="card span-4">
+          <h3 style="margin-top:0;">육성반</h3>
+          <p style="margin-bottom:0;">주 3회</p>
+        </article>
+        <article class="card span-4">
+          <h3 style="margin-top:0;">선수반(심화)</h3>
+          <p style="margin-bottom:0;">주 5회 (엘리트 선수를 꿈꾸는 과정)</p>
+        </article>
+      </div>
+
+      <p style="opacity:.75; margin-top:.8rem;">
+        * 반 편성/훈련횟수는 아이 성향·목표·상담 후 안내 가능합니다.
+      </p>
+    </section>
+
+    <!-- RECRUIT -->
+    <section id="recruit" class="reveal">
+      <div class="section-title">
+        <i class="fa-solid fa-bullhorn"></i>
+        <div>
+          <h2 style="margin:0;">모집 안내</h2>
+          <p style="margin:0; opacity:.75;">초보도 OK! 체험으로 분위기부터 확인하세요.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card span-6">
+          <h3 style="margin-top:0;">모집 대상</h3>
+          <ul style="margin-bottom:0;">
+            <li>1~4학년 (기준연도 표기 기준)</li>
+            <li>지역: 남양주 별내·진접·왕숙신도시 등 북부권</li>
+            <li>야구 경험 무관(초보 환영)</li>
+          </ul>
+        </article>
+
+        <article class="card span-6">
+          <h3 style="margin-top:0;">훈련 시간/휴무</h3>
+          <ul style="margin-bottom:0;">
+            <li>평일 기준: 16:30 ~ 19:30</li>
+            <li>토요일: 17:00 ~ 19:00</li>
+            <li>휴무: 목요일 및 일요일</li>
+          </ul>
+          <p style="opacity:.75; margin-bottom:0;">* 날씨·훈련 내용에 따라 장소/일정은 사전 안내됩니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROGRAM -->
+    <section id="program" class="reveal">
+      <div class="section-title">
+        <i class="fa-solid fa-person-running"></i>
+        <div>
+          <h2 style="margin:0;">훈련/프로그램</h2>
+          <p style="margin:0; opacity:.75;">기본기 → 실전 → 게임으로 자연스럽게 실력 업!</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card span-6">
+          <h3 style="margin-top:0;">훈련 구성(예시)</h3>
+          <ul style="margin-bottom:0;">
+            <li>워밍업/유연성 + 코어 (부상 예방)</li>
+            <li>캐치·스로우 기본기 / 풋워크</li>
+            <li>타격(티→토스→실전) 단계별</li>
+            <li>수비·주루 상황훈련</li>
+            <li>미니게임/청백전</li>
+          </ul>
+        </article>
+
+        <article class="card span-6">
+          <h3 style="margin-top:0;">훈련장 안내</h3>
+          <ul style="margin-bottom:0;">
+            <li>사능 KB야구장 : 사릉로264번길 80-73</li>
+            <li>용정리 유소년야구장 : 용정리 산164</li>
+          </ul>
+          <p style="opacity:.75; margin-bottom:0;">* 정확한 집결/공지 방식은 체험 신청 시 안내드립니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FEE -->
+    <section id="fee" class="reveal">
+      <div class="section-title">
+        <i class="fa-solid fa-receipt"></i>
+        <div>
+          <h2 style="margin:0;">회비/운영비 안내</h2>
+          <p style="margin:0; opacity:.75;">표는 보기 좋게 유지하고, 헤더에 색을 넣어 생동감 업.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>훈련 횟수</th>
+            <th>월 회비(훈련비)</th>
+            <th>월 운영비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>취미반</td>
+            <td>주 1회(수) / 주 2회(수+토)</td>
+            <td>150,000원 / 270,000원</td>
+            <td>10,000원 / 20,000원</td>
+          </tr>
+          <tr>
+            <td>육성반</td>
+            <td>주 3회(월/화/수/금/토 중 선택)</td>
+            <td>380,000원</td>
+            <td>30,000원</td>
+          </tr>
+          <tr>
+            <td>선수반(저학년부)</td>
+            <td>주 5회(월/화/수/금/토)</td>
+            <td>450,000원 (4학년 이하)</td>
+            <td>50,000원</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="opacity:.75; margin-top:.8rem;">
+        * 회비/운영비 및 납부 관련 세부(계좌/기간/환불/승급 적용 등)는 내부 운영 기준에 따릅니다.
+      </p>
+    </section>
+
+    <!-- CALENDAR -->
+    <section id="calendar" class="reveal">
+      <div class="section-title">
+        <i class="fa-regular fa-calendar-days"></i>
+        <div>
+          <h2 style="margin:0;">구단 연간 일정(요약)</h2>
+          <p style="margin:0; opacity:.75;">시즌에 따라 변동 가능 (표는 유지).</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>월</th>
+            <th>행사</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1월</td><td>동계훈련(전지합숙 포함)</td><td>기간 약 1달(변동 가능)</td></tr>
+          <tr><td>2월</td><td>스토브리그</td><td>기간 3~4주(변동 가능)</td></tr>
+          <tr><td>2월(마지막 주 토)</td><td>안전 기원제</td><td>야구단 회원 모두</td></tr>
+          <tr><td>3~11월</td><td>공식/비공식 대회</td><td>육성반·선수반 중심</td></tr>
+          <tr><td>8월</td><td>하계훈련</td><td>기간 약 3주(변동 가능)</td></tr>
+          <tr><td>12월(첫째 주 토)</td><td>송년회</td><td></td></tr>
+        </tbody>
+      </table>
+
+      <p style="opacity:.75; margin-top:.8rem;">
+        * 일정은 시즌/대회/훈련 상황에 따라 조정될 수 있습니다.
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="section-title">
+        <i class="fa-solid fa-headset"></i>
+        <div>
+          <h2 style="margin:0;">문의 / 체험훈련 신청</h2>
+          <p style="margin:0; opacity:.75;">전화/문자/카카오톡 후 일정 안내 (원하시면 폼 링크로 교체 가능)</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card span-6">
+          <h3 style="margin-top:0;">추천 대상</h3>
+          <p style="margin-bottom:.6rem;">1~4학년 / 남양주 북부권</p>
+          <h3>신청 방법</h3>
+          <p style="margin-bottom:0;">전화/문자/카카오톡 후 일정 안내</p>
+          <p style="opacity:.75; margin-top:.6rem; margin-bottom:0;">
+            * 훈련 중 통화가 어려울 수 있어, 문자/메시지를 먼저 남겨주시면 확인 후 연락드립니다.
+          </p>
+        </article>
+
+        <article class="card span-6">
+          <h3 style="margin-top:0;">연락 버튼(예시)</h3>
+          <div class="cta-row">
+            <!-- 전화번호는 원하실 때만 넣으세요 -->
+            <a class="cta primary" href="tel:010-0000-0000"><i class="fa-solid fa-phone"></i>&nbsp; 감독에게 전화</a>
+            <a class="cta primary" href="tel:010-0000-0000"><i class="fa-solid fa-phone"></i>&nbsp; 코치에게 전화</a>
+          </div>
+          <p style="opacity:.75; margin-top:.8rem; margin-bottom:0;">
+            * 공개 전화번호 표기를 원치 않으시면 “체험신청 폼(구글폼)” 링크 버튼으로 대체해드릴 수 있습니다.
+          </p>
+        </article>
+
+        <article class="card span-12">
+          <h3 style="margin-top:0;">자주 묻는 질문</h3>
+          <details open>
+            <summary>처음 시작해도 되나요?</summary>
+            <p>네, 기초부터 단계적으로 지도합니다.</p>
+          </details>
+          <details>
+            <summary>픽드랍이 있나요?</summary>
+            <p>별내·진접·오남 지역 평일 픽드랍 운영(시간/장소 개별 안내).</p>
+          </details>
+          <details>
+            <summary>유니폼은 어떻게 하나요?</summary>
+            <p>육성/선수반은 대회 출전을 위해 유니폼 착용이 필수이며, 안내에 따라 주문합니다.</p>
+          </details>
+          <p style="opacity:.75; margin-bottom:0;">
+            * 보다 자세한 운영/회칙/등록 안내는 구단 공지 채널(밴드/단체방 등)에서 안내됩니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p style="margin:0;">
+        © 남양주북부(bukbu)리틀야구단 · 경기도 남양주 북부권(별내·진접·왕숙신도시 등)
+      </p>
+      <p style="margin:.4rem 0 0; opacity:.75;">
+        * 본 페이지의 일정/내용은 운영 상황에 따라 변경될 수 있습니다.
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    // 섹션 진입 애니메이션 (가볍고 역동적인 느낌)
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('on');
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el=>io.observe(el));
+  </script>
+
+</body>
+</html>
