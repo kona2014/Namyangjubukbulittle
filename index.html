@@ -43,7 +43,7 @@
       display:flex; align-items:center; justify-content:space-between; gap:14px;
     }
 
-    /* ✅ 브랜드(로고+팀명) */
+    /* 브랜드 */
     .brandRow{display:flex; align-items:center; gap:12px; min-width:0;}
     .brand{display:flex; align-items:center; min-width:0;}
     .brand-title{
@@ -89,6 +89,7 @@
 
     nav.links{display:flex; gap:16px; font-weight:700; color:var(--muted)}
     nav.links a:hover{color:var(--text)}
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       padding:12px 16px; border-radius:14px;
@@ -105,10 +106,8 @@
     }
     .btn.primary:hover{filter:brightness(1.02)}
     .btnRow{display:flex; gap:10px; flex-wrap:wrap}
-    @media (max-width: 520px){
-      .btn{ padding:10px 12px; border-radius:12px; font-size:14px; }
-    }
 
+    /* 카드/레이아웃 */
     .card{
       background: rgba(16,27,51,.86);
       border:1px solid var(--line);
@@ -118,6 +117,7 @@
     }
     .muted{color:var(--muted)}
     .small{font-size:13px}
+
     .hero{
       display:grid; grid-template-columns: 1.15fr .85fr;
       gap:18px;
@@ -127,6 +127,7 @@
       .hero{grid-template-columns:1fr}
       nav.links{display:none}
     }
+
     .badge{
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 12px; border-radius:999px;
@@ -134,20 +135,31 @@
       border:1px solid var(--line);
       color:var(--muted);
       font-weight:800;
+      font-size:16px;
     }
+
+    /* ✅ 모바일에서 배지 폰트 -2px */
+    @media (max-width: 520px){
+      .hero-badge{ font-size:14px; }
+    }
+
     h1{margin:14px 0 10px; font-size:44px; line-height:1.15}
     @media (max-width: 520px){ h1{font-size:34px} }
     h2{margin:0 0 10px; font-size:28px}
     h3{margin:0 0 8px; font-size:18px}
+
     .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin:18px 0}
     @media (max-width: 900px){ .grid3{grid-template-columns:1fr} }
     .kpi .num{font-size:22px; font-weight:1000}
     .kpi .lbl{color:var(--muted); font-weight:700}
+
     .section{padding:22px 0}
     .twoCol{display:grid; grid-template-columns:1fr 1fr; gap:12px}
     @media (max-width: 900px){ .twoCol{grid-template-columns:1fr} }
+
     ul{margin:10px 0 0; padding-left:18px}
     li{margin:6px 0}
+
     .pill{
       display:inline-flex; gap:8px; align-items:center;
       padding:8px 12px; border-radius:999px;
@@ -156,6 +168,7 @@
       color:#cfefff; font-weight:900;
       margin:6px 8px 0 0;
     }
+
     .table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:16px; border:1px solid var(--line)}
     .table th, .table td{padding:12px 10px; border-bottom:1px solid var(--line); text-align:left}
     .table th{color:var(--muted); font-size:13px; letter-spacing:.2px}
@@ -198,7 +211,7 @@
     }
 
     /* -----------------------------
-       ✅ SLIDER (대표 사진을 슬라이드로)
+       SLIDER
     ------------------------------ */
     .slider{
       border-radius:16px;
@@ -287,6 +300,7 @@
       cursor:pointer;
     }
     .dot.on{ background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+
     .contactBox{
       display:grid; gap:10px;
       background: linear-gradient(135deg, rgba(53,194,255,.12), rgba(255,204,0,.08));
@@ -298,6 +312,24 @@
       padding:24px 0 34px;
       border-top:1px solid var(--line);
       color:var(--muted);
+    }
+
+    /* ✅ 모바일에서 버튼 3개가 한 줄 유지(안 내려감) + 번개 숨김 */
+    @media (max-width: 520px){
+      .btnRow{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding-bottom: 4px;
+      }
+      .btnRow::-webkit-scrollbar{ display:none; }
+      .btn{
+        padding: 10px 10px;
+        font-size: 13px;
+        border-radius: 12px;
+      }
+      .bolt{ display:none; }
     }
   </style>
 </head>
@@ -331,14 +363,14 @@
     <!-- HERO -->
     <section class="hero" id="top">
       <div>
-        <div class="badge">⚾ 2026 신입 모집 · <b>1~5학년(2026 기준)</b> · 남양주 북부권</div>
+        <div class="badge hero-badge">⚾ 2026 신입 모집 · <b>1~5학년(2026 기준)</b> · 남양주 북부권</div>
         <h1>함께하는 즐거움,<br/>함께하는 성장.</h1>
         <p class="muted" style="max-width:62ch">
           남양주북부리틀야구단은 별내·진접·왕숙신도시 등 <b>남양주 북부 관할구역</b> 아이들이
           야구를 즐겁게 배우고, 팀워크 속에서 성장하는 유소년 야구팀입니다.
         </p>
         <div class="btnRow" style="margin-top:14px">
-          <a class="btn primary" href="#contact">⚡ 체험훈련/상담 신청</a>
+          <a class="btn primary" href="#contact"><span class="bolt">⚡</span> 체험훈련/상담 신청</a>
           <a class="btn" href="#recruit">모집 내용 보기</a>
           <a class="btn" href="#gallery">팀 사진 보기</a>
         </div>
@@ -382,7 +414,7 @@
       <h2>팀 사진</h2>
 
       <div class="gallery">
-        <!-- ✅ 대표 영역: 슬라이드로 교체 -->
+        <!-- 대표: 슬라이드 -->
         <div class="slider" id="teamSlider" aria-label="팀 사진 슬라이드">
           <div class="slides">
             <div class="slide">
@@ -414,7 +446,7 @@
           </div>
         </div>
 
-        <!-- 기존 오른쪽 2x2 스냅은 유지 -->
+        <!-- 스냅 2x2 -->
         <div class="photoGrid">
           <div class="photo">
             <img src="images/gallery_06.jpg" alt="팀 사진 1" />
@@ -546,11 +578,7 @@
             <tr>
               <td>선수반</td>
               <td>주 5회(월/화/수/금/토)</td>
-              <td>
-                450,000원 (4학년 이하)<br>
-                550,000원 (5~6학년)<br>
-                200,000원 (7학년 8월까지)
-              </td>
+              <td>450,000원 (4학년 이하)</td>
               <td>50,000원</td>
             </tr>
           </tbody>
@@ -606,12 +634,12 @@
           <div class="btnRow" style="margin-top:6px">
             <a class="btn primary" href="tel:010-9037-8853">📞 감독에게 전화</a>
             <a class="btn" href="tel:010-8120-8617">📞 코치에게 전화</a>
-            <a class="btn primary" href="tel:010-8875-8860">📞 학부모대표에게 전화</a>
+            <a class="btn" href="tel:010-8875-8860">📞 학부모대표에게 전화</a>
           </div>
 
-          <!-- <div class="small muted" style="margin-top:8px">
+          <div class="small muted" style="margin-top:8px">
             * 공개 전화번호 표기는 원치 않으시면 “체험신청 폼(구글폼)” 링크로 대체해드릴 수 있습니다.
-          </div> -->
+          </div>
         </div>
 
         <div class="card">
@@ -636,7 +664,7 @@
     </section>
   </main>
 
-  <!-- ✅ SLIDER JS -->
+  <!-- SLIDER JS -->
   <script>
     (function () {
       const root = document.getElementById('teamSlider');
@@ -672,11 +700,9 @@
       nextBtn?.addEventListener('click', () => { go(i + 1); play(); });
       dots.forEach(d => d.addEventListener('click', () => { go(Number(d.dataset.i || 0)); play(); }));
 
-      // 마우스 올리면 일시정지(PC)
       root.addEventListener('mouseenter', stop);
       root.addEventListener('mouseleave', play);
 
-      // 모바일 스와이프
       let startX = 0, dx = 0, dragging = false;
       root.addEventListener('touchstart', (e) => {
         dragging = true;
@@ -698,7 +724,6 @@
         play();
       });
 
-      // 시작
       go(0);
       play();
     })();
