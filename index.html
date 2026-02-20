@@ -37,21 +37,70 @@
       background: rgba(11,18,32,.55);
       border-bottom:1px solid var(--line);
     }
-    .navInner{max-width:1120px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:14px;}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:900}
-    .logo{
-      width:34px; height:34px; border-radius:10px;
+    .navInner{
+      max-width:1120px; margin:0 auto; padding:14px 24px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+
+    /* ✅ 브랜드(로고+팀명) 정리 */
+    .brandRow{display:flex; align-items:center; gap:12px; min-width:0;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; min-width:0;}
+    .brand-title{
+      margin:0;
+      line-height:1.1;
+      font-weight:1000;
+      letter-spacing:-.02em;
+      white-space:nowrap;       /* ✅ 모바일에서 강제 줄바꿈 방지 */
+      overflow:hidden;          /* 공간 부족시 */
+      text-overflow:ellipsis;   /* … 처리 */
+      font-size:22px;           /* 기본(태블릿/모바일 베이스) */
+    }
+
+    /* ✅ 데스크탑에서는 팀명 크게 */
+    @media (min-width: 901px){
+      .brand-title{ font-size:28px; }
+    }
+    /* ✅ 모바일에서는 더 작게 */
+    @media (max-width: 520px){
+      .brand-title{ font-size:17px; }
+      .navInner{ padding:12px 16px; }
+    }
+
+    .brand-logo{
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display:block;
+    }
+
+    /* 로고 배경 박스(그라디언트) 안에 이미지 넣는 구조로 정리 */
+    .logoBox{
+      width:40px; height:40px;
+      border-radius:12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       box-shadow:0 10px 24px rgba(0,0,0,.35);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
     }
+    .logoBox img{
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.25));
+    }
+
     nav.links{display:flex; gap:16px; font-weight:700; color:var(--muted)}
     nav.links a:hover{color:var(--text)}
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       padding:12px 16px; border-radius:14px;
       border:1px solid var(--line);
       font-weight:900;
       background:rgba(255,255,255,.06);
+      white-space:nowrap;
     }
     .btn.primary{
       background: linear-gradient(135deg, var(--accent), #ffd84d);
@@ -61,6 +110,12 @@
     }
     .btn.primary:hover{filter:brightness(1.02)}
     .btnRow{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* ✅ 모바일에서 상단 버튼도 조금 작게 */
+    @media (max-width: 520px){
+      .btn{ padding:10px 12px; border-radius:12px; font-size:14px; }
+    }
+
     .card{
       background: rgba(16,27,51,.86);
       border:1px solid var(--line);
@@ -163,10 +218,16 @@
 <body>
   <header class="nav">
     <div class="navInner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>남양주북부 리틀야구단</div>
+      <!-- ✅ 로고 + 팀명 한 덩어리로 정리 -->
+      <div class="brandRow">
+        <div class="logoBox" aria-hidden="true">
+          <img class="brand-logo" src="images/logo.png" alt="남양주북부리틀야구단 로고">
+        </div>
+        <div class="brand">
+          <h2 class="brand-title">남양주북부 리틀야구단</h2>
+        </div>
       </div>
+
       <nav class="links" aria-label="메뉴">
         <a href="#about">팀 소개</a>
         <a href="#recruit">모집 안내</a>
@@ -180,7 +241,7 @@
   </header>
 
   <main class="wrap">
-    
+
     <!-- HERO -->
     <section class="hero" id="top">
       <div>
@@ -441,14 +502,17 @@
           <div><span class="muted">신청 방법</span> · <b>전화/문자/카카오톡</b> 후 일정 안내</div>
           <div class="small muted">* 훈련 중 통화가 어려울 수 있어, 문자/메시지를 먼저 남겨주시면 확인 후 연락드립니다.</div>
 
-          <!-- 연락처는 공개 범위를 고려해 원하시면 유지/비공개로 조정하세요 -->
           <hr style="border:none;border-top:1px solid rgba(0,0,0,.12); margin:8px 0" />
           <div><span class="muted">감독</span> · <b>이화준</b> (훈련/기량/진학/레슨)</div>
           <div><span class="muted">코치</span> · <b>정규상</b> (상담/출결)</div>
+          <!-- ✅ 추가 -->
+          <div><span class="muted">학부모대표</span> · <b>김태형</b> (상담)</div>
 
           <div class="btnRow" style="margin-top:6px">
             <a class="btn primary" href="tel:010-9037-8853">📞 감독에게 전화</a>
             <a class="btn" href="tel:010-8120-8617">📞 코치에게 전화</a>
+            <!-- ✅ 추가 버튼 -->
+            <a class="btn" href="tel:010-8875-8860">📞 학부모대표에게 전화</a>
           </div>
 
           <div class="small muted" style="margin-top:8px">
